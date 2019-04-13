@@ -1,0 +1,327 @@
+$background: #fff;
+
+body {
+  background: $background;
+  font-family: 'Montserrat', sans-serif;
+  overflow-x: hidden;
+}
+
+body.home {
+  background: white;
+}
+
+.home {
+  text-align: center;
+  
+  &__title {
+    text-transform: uppercase;
+    font-weight: 300;
+    font-size: 40px;
+    letter-spacing: 20px;
+    color: #F37335;
+    opacity: 0.9;
+    margin: 150px 0 150px 0;
+    padding: 0 40px;
+
+    span {
+      display: block;
+      margin-top: 10px;
+      font-size: 15px;
+      letter-spacing: 10px;
+    }
+  }
+
+  &__albums {
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+  }
+
+  &__album {
+    width: 25%;
+    position: relative;
+    cursor: pointer;
+
+    img {
+      display: flex;
+      width: 100%;
+      border-radius: 15px;
+      height: auto;
+    }
+
+    &__info {
+      position: absolute;
+      display: flex;
+      left: 0; top: 0; width: calc(100% - 10px); height: calc(100% - 10px);
+      border: 5px solid white;
+      border-radius: 10px;
+      background: linear-gradient(to top, rgba(#FDC830,.8),rgba(#F37335,.8));
+      align-items: center;
+      justify-content: center;
+
+      &__name {
+        position: relative;
+        display: flex;
+        margin: 10px;
+        padding: 10px 15px;
+        background: white;
+        border-radius: 30px;
+        font-weight: 400;
+        color: #F37335;
+        font-size: 20px;
+        text-transform: uppercase;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        box-sizing: border-box;
+
+        &:after {
+          content: '';
+          position: absolute;
+          display: flex;
+          left: 0; top: 0; width: calc(100% - 20px); height: calc(100% - 20px);
+          border: 10px solid white;
+          border-radius: 30px;
+        }
+      }
+    }
+  }
+
+  @media only screen and (max-width: 900px) {
+    &__album { 
+      &__info { 
+        &__name {
+          font-size: 12px;
+          padding: 10px;
+          margin: 0;
+          font-weight: 700;
+          text-overflow: initial;
+          white-space: initial;
+          background: transparent;
+          color: #fff;
+          &:after {
+            display: none;
+          }
+        } 
+      } 
+    }
+  }
+
+  @media only screen and (max-width: 400px) {
+    &__album { 
+      &__info { 
+        &__name {
+          font-size: 10px;
+          padding: 10px;
+          margin: 0;
+          font-weight: 300;
+          text-transform: lowercase;
+          text-overflow: initial;
+          white-space: initial;
+          background: transparent;
+          color: #fff;
+          &:after {
+            display: none;
+          }
+        } 
+      } 
+    }
+  }
+}
+.back {
+  position: absolute;
+  cursor: pointer;
+  padding: 20px;
+  top: 23px;
+  z-index: 1;
+}
+
+.player {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  z-index: 1000;
+  &__bar {
+    width: 0;
+    height: 5px;
+    background-color: #F37335;
+    animation: bar 30s linear;
+
+  }
+}
+.product {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  &__title {
+    display: flex;
+    text-transform: uppercase;
+    font-weight: 300;
+    font-size: 40px;
+    letter-spacing: 20px;
+    color: #F37335;
+    opacity: 0.9;
+    margin: 30px 0 0 0;
+    text-align: center;
+    padding: 0 40px;
+  }
+
+  &__artist {
+    display: flex;
+    text-transform: uppercase;
+    font-weight: 300;
+    font-size: 18px;
+    letter-spacing: 3px;
+    color: #F37335;
+    opacity: 0.9;
+    margin: 10px 0 40px;
+  }
+
+  &__track {
+    display: flex;
+    text-transform: uppercase;
+    font-weight: 300;
+    font-size: 14px;
+    letter-spacing: 3px;
+    color: #F37335;
+    opacity: 0.9;
+    padding: 15px 0;
+    margin: 0;
+    cursor: pointer;
+
+    &.-disabled {
+      text-decoration: line-through;
+      pointer-events: none;
+    }
+    &:not(:last-child) {
+      border-bottom: 1px solid rgba(#F37335, 0.3);
+    }
+  }
+
+  &__details {
+    display: flex;
+    flex-direction: row;
+    color: #F37335;
+    margin-bottom: 40px;
+  }
+
+  
+
+  &__music {
+    position: absolute;
+    bottom: -40px;
+    text-transform: uppercase;
+    font-weight: 300;
+    font-size: 18px;
+    letter-spacing: 3px;
+    color: #F37335;
+    opacity: 0.9;
+    margin: 0;
+    width: 100%;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  &__image, &__image--playing {
+    display: flex;
+    position: relative;
+    width: 380px;
+    height: 380px;
+    margin-right: 120px;
+    
+    .pause {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 100;
+
+    }
+    .disc {
+      width: 100%;
+      height: 100%;
+      border-radius: 100%;
+      transition: transform 1s;
+    }
+
+    &:before {
+      content: '';
+      border-radius: 100%;
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      background: $background;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 100;
+    }
+
+    &--playing {
+      cursor: pointer;
+      
+      .disc {
+        animation: rotating 2.5s linear infinite;
+        opacity: 0.7;
+        transition: all 1s;
+
+      }
+    }
+  }
+
+  @media only screen and (max-width: 1024px) {
+    &__title {
+      font-size: 30px;
+    }
+    &__details {
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    &__image, &__image--playing {
+      margin-right: 0;
+      margin-bottom: 80px;
+    }
+
+    &__track {
+      padding: 15px 20px;
+    }
+
+    &__details {
+      margin-bottom: 30px;
+    }
+  }
+
+  @media only screen and (max-width: 500px) {
+    &__image, &__image--playing {
+      width: 250px;
+      height: 250px;
+    }
+  }
+}
+
+@keyframes rotating {
+  from {
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes bar {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
