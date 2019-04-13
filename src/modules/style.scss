@@ -89,9 +89,10 @@ body.home {
 
   @media only screen and (max-width: 900px) {
     &__album { 
+      width: 33%;
       &__info { 
         &__name {
-          font-size: 12px;
+          font-size: 14px;
           padding: 10px;
           margin: 0;
           font-weight: 700;
@@ -107,24 +108,9 @@ body.home {
     }
   }
 
-  @media only screen and (max-width: 400px) {
+  @media only screen and (max-width: 500px) {
     &__album { 
-      &__info { 
-        &__name {
-          font-size: 10px;
-          padding: 10px;
-          margin: 0;
-          font-weight: 300;
-          text-transform: lowercase;
-          text-overflow: initial;
-          white-space: initial;
-          background: transparent;
-          color: #fff;
-          &:after {
-            display: none;
-          }
-        } 
-      } 
+      width: 50%;
     }
   }
 }
