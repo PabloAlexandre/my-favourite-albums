@@ -11,7 +11,7 @@ const formatTrackName = name =>
   name.length > 30 ? `${name.substring(0, 30)}...` : name;
   
 const Track = (props, index) => (
-  <h3 onClick={() => props.play(index + 1)} className={`product__track${props.preview ? '' : ' -disabled'}`} key={index}>
+  <h3 onClick={() => props.preview ? props.play(index + 1) : () => {}} className={`product__track${props.preview ? '' : ' -disabled'}`} key={index}>
     {index+1}- {formatTrackName(props.name)} ({msFormat(props.duration)})
   </h3>
 );
@@ -44,7 +44,7 @@ const Product = ({ history, match: { params: { slug } } }) => {
         </div>
         }
 
-        <Imagery name='Chevron' className="back" onClick={history.goBack} />
+        <Imagery name='Chevron' className="back" onClick={() => history.push('/')} />
         <div className="product">
           <h1 className="product__title">{ product.name }</h1>
           <h2 className="product__artist">- { product.artist } -</h2>

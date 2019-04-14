@@ -7,9 +7,12 @@
     "node-sass": "^4.11.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-scripts": "2.1.8"
+    "react-scripts": "2.1.8",
+    "serve": "^11.0.0"
   },
   "scripts": {
+    "serve": "nohup serve -s build > /tmp/node.log &",
+    "serve:stop": "kill $(ps aux | grep 'serve -s build' | grep -v grep | awk '{print $2}')",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

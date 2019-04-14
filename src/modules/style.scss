@@ -13,6 +13,21 @@ body.home {
 .home {
   text-align: center;
   
+  .search {
+    &__input {
+      border: none;
+      border-bottom: 1px solid #F37335;
+      padding: 10px 0;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      min-width: 400px;
+      outline: none;
+      color: #F37335;
+      margin-bottom: 120px;
+      text-align: center;
+    }
+  }
+
   &__title {
     text-transform: uppercase;
     font-weight: 300;
@@ -20,7 +35,7 @@ body.home {
     letter-spacing: 20px;
     color: #F37335;
     opacity: 0.9;
-    margin: 150px 0 150px 0;
+    margin: 150px 0 50px 0;
     padding: 0 40px;
 
     span {
@@ -196,7 +211,7 @@ body.home {
 
   &__music {
     position: absolute;
-    bottom: -40px;
+    bottom: 0px;
     text-transform: uppercase;
     font-weight: 300;
     font-size: 18px;
@@ -217,7 +232,8 @@ body.home {
     width: 380px;
     height: 380px;
     margin-right: 120px;
-    
+    padding-bottom: 40px;
+    overflow: hidden;
     .pause {
       position: absolute;
       left: 50%;
@@ -241,7 +257,7 @@ body.home {
       height: 50px;
       background: $background;
       left: 50%;
-      top: 50%;
+      top: calc(50% - 20px);
       transform: translate(-50%, -50%);
       z-index: 100;
     }
