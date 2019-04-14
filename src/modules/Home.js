@@ -26,7 +26,7 @@ const Home = (props) => {
   return (
       <div className="home">
         <h1 className="home__title">My Music <span>by Piripak.cc</span></h1>
-        { */ <Search onChange={onChange} value={searchField}/> */ }
+        { /* <Search onChange={onChange} value={searchField}/> */ }
         <div className="home__albums">
           { 
             data
