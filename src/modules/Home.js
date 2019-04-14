@@ -22,7 +22,7 @@ const Card = ({ preview, name, id, slug, tracks }) => (
 
 const Home = (props) => {
 
-  const [searchField, setSearchField] = useState('');
+  const [searchField, setSearchField] = useState(''); //eslint-disable-line
   // const onChange = (e) => setSearchField(e.target.value);
   return (
       <div className="home">
