@@ -1,0 +1,40 @@
+version: 2.1
+
+commands:
+  install-dependencies:
+    description: "Install NodeJS package.json dependencies checking if package json has changed"
+    parameters:
+      path:
+        type: string
+        default: "./"
+    steps:
+      - restore_cache:
+          key: dependency-cache-{{ checksum "<< parameters.path >>package-lock.json" }}
+      - run: if [ ! -d << parameters.path >>node_modules ]; then cd << parameters.path >> && npm ci; fi;
+      - save_cache:
+          key: dependency-cache-{{ checksum "<< parameters.path >>package-lock.json" }}
+          paths:
+            - "~/app/<< parameters.path >>./node_modules"
+            - "~/.cache/Cypress"
+jobs:
+  build:
+    working_directory: ~/app
+    docker:
+      - image: cypress/base:8
+    steps:
+      - checkout
+      - install-dependencies
+      - install-dependencies:
+          path: "./qa/"
+      - run: npm run build
+      - run: 
+          name: Cypress
+          command: cd qa && ENV=CI npm run cypress:run
+      - store_artifacts:
+          path: qa/cypress/videos
+          prefix: videos
+      - store_artifacts:
+          path: qa/cypress/screenshots
+          prefix: screenshots
+
+      
